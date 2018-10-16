@@ -5,18 +5,19 @@
   
 
   
-  <title>Shelly-Shen</title>
+  <title>vuex | Shelly-Shen</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="shelly&apos;s blog ———— share everything">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Shelly-Shen">
-<meta property="og:url" content="http://Shelly-Shen.github.io/index.html">
+  <meta name="description" content="new Vue({ //state     data(){         return{             count:0         }     }, //view     template:`&amp;lt;div&amp;gt;{{count}}&amp;lt;/div&amp;gt;`, //actions     methods:{         increment(){             this">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vuex">
+<meta property="og:url" content="http://Shelly-Shen.github.io/2018/10/16/vuex/index.html">
 <meta property="og:site_name" content="Shelly-Shen">
-<meta property="og:description" content="shelly&apos;s blog ———— share everything">
+<meta property="og:description" content="new Vue({ //state     data(){         return{             count:0         }     }, //view     template:`&amp;lt;div&amp;gt;{{count}}&amp;lt;/div&amp;gt;`, //actions     methods:{         increment(){             this">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-16T03:56:02.978Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Shelly-Shen">
-<meta name="twitter:description" content="shelly&apos;s blog ———— share everything">
+<meta name="twitter:title" content="vuex">
+<meta name="twitter:description" content="new Vue({ //state     data(){         return{             count:0         }     }, //view     template:`&amp;lt;div&amp;gt;{{count}}&amp;lt;/div&amp;gt;`, //actions     methods:{         increment(){             this">
   
     <link rel="alternate" href="/atom.xml" title="Shelly-Shen" type="application/atom+xml">
   
@@ -63,9 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-vuex" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-vuex" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/10/16/vuex/" class="article-date">
   <time datetime="2018-10-16T03:55:33.000Z" itemprop="datePublished">2018-10-16</time>
@@ -78,8 +77,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/16/vuex/">vuex</a>
+    <h1 class="article-title" itemprop="name">
+      vuex
     </h1>
   
 
@@ -443,311 +442,19 @@ store.registerModule([&apos;nested&apos;,&apos;myMoudel&apos;]),{
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-async-1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/10/16/async-1/" class="article-date">
-  <time datetime="2018-10-16T03:46:00.000Z" itemprop="datePublished">2018-10-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/16/async-1/">async</a>
-    </h1>
+    <a href="/2018/10/16/async-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">async</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="async"><a href="#async" class="headerlink" title="async"></a>async</h1><pre><code>const asyncReadFile = async function () {
-  const f1 = await readFile(&apos;/etc/fstab&apos;);
-  const f2 = await readFile(&apos;/etc/shells&apos;);
-  console.log(f1.toString());
-  console.log(f2.toString());
-};
-</code></pre><ul>
-<li>async表示函数里有异步操作，asyn，await后的函数会返回一个Promise 对象，,await命令就是内部then命令的语法糖  </li>
-<li>await会先返回，等到异步操作完成，再接着执行函数体内后面的语句。</li>
-<li><p>async函数内部return语句返回的值，会成为then方法回调函数的参数。</p>
-<pre><code>async function getStockPriceByName(name) {
-  const symbol = await getStockSymbol(name);
-  const stockPrice = await getStockPrice(symbol);
-  return stockPrice;
-}
-
-getStockPriceByName(&apos;goog&apos;).then(function (result) {
-  console.log(result);
-});
-</code></pre></li>
-<li><p>只有async函数内部的异步操作执行完，才会执行then方法指定的回调函数。</p>
-<h2 id="try-catch"><a href="#try-catch" class="headerlink" title="try catch"></a>try catch</h2><pre><code>async function f() {
-  try {
-    await new Promise(function (resolve, reject) {
-      throw new Error(&apos;出错了&apos;);
-    });
-  } catch(e) {
-  }
-  return await(&apos;hello world&apos;);
-}
-
-//另一种写法
-async function myFunction() {
-  await somethingThatReturnsAPromise()
-  .catch(function (err) {
-    console.log(err);
-  });
-}
-</code></pre><h2 id="同时触发"><a href="#同时触发" class="headerlink" title="同时触发"></a>同时触发</h2><p>  let [foo, bar] = await Promise.all([getFoo(), getBar()]);</p>
-<p>  // 写法二<br>  let fooPromise = getFoo();<br>  let barPromise = getBar();<br>  let foo = await fooPromise;<br>  let bar = await barPromise;</p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://Shelly-Shen.github.io/2018/10/16/async-1/" data-id="cjnb73ud00000b0homqt27mif" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-闭包" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/10/16/闭包/" class="article-date">
-  <time datetime="2018-10-16T03:10:42.000Z" itemprop="datePublished">2018-10-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/16/闭包/">闭包</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="函数作为返回值被返回"><a href="#函数作为返回值被返回" class="headerlink" title="函数作为返回值被返回"></a>函数作为返回值被返回</h2><pre><code>function F(){
-    var a = 1;
-    function foo(){
-        return a;
-    }
-    return foo;
-}        
-console.log(F()());   
-</code></pre><h2 id="函数被赋给一个变量"><a href="#函数被赋给一个变量" class="headerlink" title="函数被赋给一个变量"></a>函数被赋给一个变量</h2><pre><code>var ret;
-function F(){
-    var a = 1;
-    function foo(){
-        return a;
-    }
-    ret = foo;
-}
-F()          
-console.log(ret());
-</code></pre><p>作用：<br>在在作用域以外的地方（全局作用域)中执行函数，但函数有其特定的作用域</p>
-<h2 id="立即执行函数"><a href="#立即执行函数" class="headerlink" title="立即执行函数"></a>立即执行函数</h2><pre><code>function inner(fn){
-    console.log(fn());    
-}
-(function(){
-var a = 1;
-function foo(){
-    return a;
-}
-inner(foo)
- })()
-</code></pre><p>在立即执行函数中被声明（作用域）,在inner函数中被调用    </p>
-<h2 id="循环问题"><a href="#循环问题" class="headerlink" title="循环问题"></a>循环问题</h2><pre><code>function foo(){
-    var arr = [];
-    for(var i = 0;i&lt;2;i++){
-        arr[i] = function(){
-            return i;
-        }
-    }
-    return arr;
-}
-var bar = foo();
-console.log(bar[0]());
-</code></pre><p>:<img src="root.png" alt=""></p>
-<h3 id="使用立即执行函数，创建多个执行环境保存循环时各个状态的索引值"><a href="#使用立即执行函数，创建多个执行环境保存循环时各个状态的索引值" class="headerlink" title="使用立即执行函数，创建多个执行环境保存循环时各个状态的索引值"></a>使用立即执行函数，创建多个执行环境保存循环时各个状态的索引值</h3><pre><code>function foo(){
-    var arr =  [] ;
-    for(var i = 0;i&lt;2;i++){
-        arr[i] = (function(j){
-            return function test(){
-                return j;
-            }
-        })(i)
-    }
-return arr;
-}
-var bar = foo();
-console.log(bar[0]());
-</code></pre><p>:<img src="roott.png" alt=""></p>
-<h3 id="块作用域"><a href="#块作用域" class="headerlink" title="块作用域"></a>块作用域</h3><p>循环中的变量使用let</p>
-<h2 id="getter-setter"><a href="#getter-setter" class="headerlink" title="getter||setter"></a>getter||setter</h2><p>通过setValue和getValue将要操作的变量保存在函数内部，防止暴露在外部</p>
-<pre><code>var getValule,setValue
-(function(){
-var a = 0;
-getValue = function(){
-    return a;
-}
-setValue = function(i){
-    if(typeof i === &apos;number&apos;){
-        a = i;
-    }
-}
-})()
-console.log(getValue());
-setValue(1);
-console.log(getValue());
-</code></pre><h2 id="使用闭包实现迭代器"><a href="#使用闭包实现迭代器" class="headerlink" title="使用闭包实现迭代器"></a>使用闭包实现迭代器</h2><pre><code>function F(arr){
-    var i = 0;
-    return function(){
-        return arr[i++]
-    } 
-}
-var next = F([1,2,3]);
-console.log(next());//1
-console.log(next());//2
-</code></pre><h2 id="使用闭包区分首次"><a href="#使用闭包区分首次" class="headerlink" title="使用闭包区分首次"></a>使用闭包区分首次</h2><pre><code>var firstLoad = (function(id){
-var list = [];
-return function(id){
-    if(list.indexOf(id) &gt;= 0){
-        return false;
-    }else{
-        list.push(id);
-        return true;
-    }
-}
-})();
-console.log(firstLoad(10));
-console.log(firstLoad(10));
-console.log(firstLoad(2));
-</code></pre><h2 id="模拟缓存机制"><a href="#模拟缓存机制" class="headerlink" title="模拟缓存机制"></a>模拟缓存机制</h2><pre><code>var mult = function(){
-var cache = {};
-var calculate = function(){
-    var a = 1;
-    console.log(arguments);
-    for(var i = 0,len = arguments.length;i&lt;len;i++){
-        a = a*arguments[i];
-    }
-    return a;
-}
-return function(){
-    var args = Array.prototype.join.call(arguments,&quot;,&quot;);//&quot;2,3&quot;
-    if(args in cache){
-        return cache[args];
-    }
-    cache[args] = calculate.apply(null,arguments);
-    return cache[args];//6
-}
-}()
-mult(2,3);
-</code></pre><p>如果参数在缓存中存在，直接从缓存中取，如果不存在放入缓存中</p>
-<h2 id="Ping图像数据上报"><a href="#Ping图像数据上报" class="headerlink" title="Ping图像数据上报"></a>Ping图像数据上报</h2><p>还记得跨域请求中的<img>标签实现的单向通信吗</p>
-<pre><code>var    img = new Image();
-    img.onload = img.onerror = function(){
-        alert(&quot;Done!&quot;);
-    } ;
-    img.src = &quot;http://.....&quot;;
-</code></pre><p>现在我们将其封装在一个函数中</p>
-<pre><code>var report = function(src){
-  var img = new Image();
-  img.src = src;
-}
-report(&apos;http://xx.com/getUserInfo&apos;);
-</code></pre><p>但是这样可能会导致数据上报不完全，因为当函数调用完以后，img变量就销毁，有可能现在还没有来得及发送HTTP请求哟~<br>因此我们把img变量用闭包封装起来</p>
-<pre><code>var report = (function(){
-var imgs = [];
-return function(src){
-    var    img = new Image();
-    img.onload = img.onerror = function(){
-        alert(&quot;Done!&quot;);
-    } ;
-    img.src = src;
-}
-})()
-report(&quot;http://.....&quot;)
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://Shelly-Shen.github.io/2018/10/16/闭包/" data-id="cjnb73uda0002b0ho8hvkh2y3" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/10/16/hello-world/" class="article-date">
-  <time datetime="2018-10-16T02:14:34.925Z" itemprop="datePublished">2018-10-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/16/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://Shelly-Shen.github.io/2018/10/16/hello-world/" data-id="cjnb73ud60001b0hoiudoqqci" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         

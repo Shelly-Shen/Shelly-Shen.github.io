@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>闭包 | Shelly-Shen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="函数作为返回值被返回function F(){     var a = 1;     function foo(){         return a;     }     return foo; }         console.log(F()());    函数被赋给一个变量var ret; function F(){     var a = 1;     function foo(){">
+<meta property="og:type" content="article">
+<meta property="og:title" content="闭包">
+<meta property="og:url" content="http://Shelly-Shen.github.io/2018/10/16/闭包/index.html">
+<meta property="og:site_name" content="Shelly-Shen">
+<meta property="og:description" content="函数作为返回值被返回function F(){     var a = 1;     function foo(){         return a;     }     return foo; }         console.log(F()());    函数被赋给一个变量var ret; function F(){     var a = 1;     function foo(){">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://shelly-shen.github.io/2018/10/16/闭包/root.png">
+<meta property="og:image" content="http://shelly-shen.github.io/2018/10/16/闭包/roott.png">
+<meta property="og:updated_time" content="2018-10-16T03:54:08.391Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="闭包">
+<meta name="twitter:description" content="函数作为返回值被返回function F(){     var a = 1;     function foo(){         return a;     }     return foo; }         console.log(F()());    函数被赋给一个变量var ret; function F(){     var a = 1;     function foo(){">
+<meta name="twitter:image" content="http://shelly-shen.github.io/2018/10/16/闭包/root.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Shelly-Shen" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Shelly-Shen</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://Shelly-Shen.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-闭包" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/16/闭包/" class="article-date">
+  <time datetime="2018-10-16T03:10:42.000Z" itemprop="datePublished">2018-10-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      闭包
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="函数作为返回值被返回"><a href="#函数作为返回值被返回" class="headerlink" title="函数作为返回值被返回"></a>函数作为返回值被返回</h2><pre><code>function F(){
+    var a = 1;
+    function foo(){
+        return a;
+    }
+    return foo;
+}        
+console.log(F()());   
+</code></pre><h2 id="函数被赋给一个变量"><a href="#函数被赋给一个变量" class="headerlink" title="函数被赋给一个变量"></a>函数被赋给一个变量</h2><pre><code>var ret;
+function F(){
+    var a = 1;
+    function foo(){
+        return a;
+    }
+    ret = foo;
+}
+F()          
+console.log(ret());
+</code></pre><p>作用：<br>在在作用域以外的地方（全局作用域)中执行函数，但函数有其特定的作用域</p>
+<h2 id="立即执行函数"><a href="#立即执行函数" class="headerlink" title="立即执行函数"></a>立即执行函数</h2><pre><code>function inner(fn){
+    console.log(fn());    
+}
+(function(){
+var a = 1;
+function foo(){
+    return a;
+}
+inner(foo)
+ })()
+</code></pre><p>在立即执行函数中被声明（作用域）,在inner函数中被调用    </p>
+<h2 id="循环问题"><a href="#循环问题" class="headerlink" title="循环问题"></a>循环问题</h2><pre><code>function foo(){
+    var arr = [];
+    for(var i = 0;i&lt;2;i++){
+        arr[i] = function(){
+            return i;
+        }
+    }
+    return arr;
+}
+var bar = foo();
+console.log(bar[0]());
+</code></pre><p>:<img src="root.png" alt=""></p>
+<h3 id="使用立即执行函数，创建多个执行环境保存循环时各个状态的索引值"><a href="#使用立即执行函数，创建多个执行环境保存循环时各个状态的索引值" class="headerlink" title="使用立即执行函数，创建多个执行环境保存循环时各个状态的索引值"></a>使用立即执行函数，创建多个执行环境保存循环时各个状态的索引值</h3><pre><code>function foo(){
+    var arr =  [] ;
+    for(var i = 0;i&lt;2;i++){
+        arr[i] = (function(j){
+            return function test(){
+                return j;
+            }
+        })(i)
+    }
+return arr;
+}
+var bar = foo();
+console.log(bar[0]());
+</code></pre><p>:<img src="roott.png" alt=""></p>
+<h3 id="块作用域"><a href="#块作用域" class="headerlink" title="块作用域"></a>块作用域</h3><p>循环中的变量使用let</p>
+<h2 id="getter-setter"><a href="#getter-setter" class="headerlink" title="getter||setter"></a>getter||setter</h2><p>通过setValue和getValue将要操作的变量保存在函数内部，防止暴露在外部</p>
+<pre><code>var getValule,setValue
+(function(){
+var a = 0;
+getValue = function(){
+    return a;
+}
+setValue = function(i){
+    if(typeof i === &apos;number&apos;){
+        a = i;
+    }
+}
+})()
+console.log(getValue());
+setValue(1);
+console.log(getValue());
+</code></pre><h2 id="使用闭包实现迭代器"><a href="#使用闭包实现迭代器" class="headerlink" title="使用闭包实现迭代器"></a>使用闭包实现迭代器</h2><pre><code>function F(arr){
+    var i = 0;
+    return function(){
+        return arr[i++]
+    } 
+}
+var next = F([1,2,3]);
+console.log(next());//1
+console.log(next());//2
+</code></pre><h2 id="使用闭包区分首次"><a href="#使用闭包区分首次" class="headerlink" title="使用闭包区分首次"></a>使用闭包区分首次</h2><pre><code>var firstLoad = (function(id){
+var list = [];
+return function(id){
+    if(list.indexOf(id) &gt;= 0){
+        return false;
+    }else{
+        list.push(id);
+        return true;
+    }
+}
+})();
+console.log(firstLoad(10));
+console.log(firstLoad(10));
+console.log(firstLoad(2));
+</code></pre><h2 id="模拟缓存机制"><a href="#模拟缓存机制" class="headerlink" title="模拟缓存机制"></a>模拟缓存机制</h2><pre><code>var mult = function(){
+var cache = {};
+var calculate = function(){
+    var a = 1;
+    console.log(arguments);
+    for(var i = 0,len = arguments.length;i&lt;len;i++){
+        a = a*arguments[i];
+    }
+    return a;
+}
+return function(){
+    var args = Array.prototype.join.call(arguments,&quot;,&quot;);//&quot;2,3&quot;
+    if(args in cache){
+        return cache[args];
+    }
+    cache[args] = calculate.apply(null,arguments);
+    return cache[args];//6
+}
+}()
+mult(2,3);
+</code></pre><p>如果参数在缓存中存在，直接从缓存中取，如果不存在放入缓存中</p>
+<h2 id="Ping图像数据上报"><a href="#Ping图像数据上报" class="headerlink" title="Ping图像数据上报"></a>Ping图像数据上报</h2><p>还记得跨域请求中的<img>标签实现的单向通信吗</p>
+<pre><code>var    img = new Image();
+    img.onload = img.onerror = function(){
+        alert(&quot;Done!&quot;);
+    } ;
+    img.src = &quot;http://.....&quot;;
+</code></pre><p>现在我们将其封装在一个函数中</p>
+<pre><code>var report = function(src){
+  var img = new Image();
+  img.src = src;
+}
+report(&apos;http://xx.com/getUserInfo&apos;);
+</code></pre><p>但是这样可能会导致数据上报不完全，因为当函数调用完以后，img变量就销毁，有可能现在还没有来得及发送HTTP请求哟~<br>因此我们把img变量用闭包封装起来</p>
+<pre><code>var report = (function(){
+var imgs = [];
+return function(src){
+    var    img = new Image();
+    img.onload = img.onerror = function(){
+        alert(&quot;Done!&quot;);
+    } ;
+    img.src = src;
+}
+})()
+report(&quot;http://.....&quot;)
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://Shelly-Shen.github.io/2018/10/16/闭包/" data-id="cjnb73uda0002b0ho8hvkh2y3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/10/16/async-1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          async
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/10/16/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/10/16/vuex/">vuex</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/16/async-1/">async</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/16/闭包/">闭包</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/16/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

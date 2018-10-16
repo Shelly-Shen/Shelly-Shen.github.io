@@ -7,17 +7,17 @@
   
   <title>async | Shelly-Shen</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#async const asyncReadFile = async function () {   const f1 = await readFile(&amp;apos;/etc/fstab&amp;apos;);   const f2 = await readFile(&amp;apos;/etc/shells&amp;apos;);   console.log(f1.toString());   console.log(">
+  <meta name="description" content="asyncconst asyncReadFile = async function () {   const f1 = await readFile(&amp;apos;/etc/fstab&amp;apos;);   const f2 = await readFile(&amp;apos;/etc/shells&amp;apos;);   console.log(f1.toString());   console.log(f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="async">
 <meta property="og:url" content="http://Shelly-Shen.github.io/2018/10/16/async-1/index.html">
 <meta property="og:site_name" content="Shelly-Shen">
-<meta property="og:description" content="#async const asyncReadFile = async function () {   const f1 = await readFile(&amp;apos;/etc/fstab&amp;apos;);   const f2 = await readFile(&amp;apos;/etc/shells&amp;apos;);   console.log(f1.toString());   console.log(">
+<meta property="og:description" content="asyncconst asyncReadFile = async function () {   const f1 = await readFile(&amp;apos;/etc/fstab&amp;apos;);   const f2 = await readFile(&amp;apos;/etc/shells&amp;apos;);   console.log(f1.toString());   console.log(f2">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-16T03:49:15.833Z">
+<meta property="og:updated_time" content="2018-10-16T03:52:28.920Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="async">
-<meta name="twitter:description" content="#async const asyncReadFile = async function () {   const f1 = await readFile(&amp;apos;/etc/fstab&amp;apos;);   const f2 = await readFile(&amp;apos;/etc/shells&amp;apos;);   console.log(f1.toString());   console.log(">
+<meta name="twitter:description" content="asyncconst asyncReadFile = async function () {   const f1 = await readFile(&amp;apos;/etc/fstab&amp;apos;);   const f2 = await readFile(&amp;apos;/etc/shells&amp;apos;);   console.log(f1.toString());   console.log(f2">
   
     <link rel="alternate" href="/atom.xml" title="Shelly-Shen" type="application/atom+xml">
   
@@ -86,8 +86,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#async</p>
-<pre><code>const asyncReadFile = async function () {
+        <h1 id="async"><a href="#async" class="headerlink" title="async"></a>async</h1><pre><code>const asyncReadFile = async function () {
   const f1 = await readFile(&apos;/etc/fstab&apos;);
   const f2 = await readFile(&apos;/etc/shells&apos;);
   console.log(f1.toString());
@@ -107,8 +106,8 @@ getStockPriceByName(&apos;goog&apos;).then(function (result) {
   console.log(result);
 });
 </code></pre></li>
-<li><p>只有async函数内部的异步操作执行完，才会执行then方法指定的回调函数。<br>##try catch</p>
-<pre><code>async function f() {
+<li><p>只有async函数内部的异步操作执行完，才会执行then方法指定的回调函数。</p>
+<h2 id="try-catch"><a href="#try-catch" class="headerlink" title="try catch"></a>try catch</h2><pre><code>async function f() {
   try {
     await new Promise(function (resolve, reject) {
       throw new Error(&apos;出错了&apos;);
@@ -125,8 +124,7 @@ async function myFunction() {
     console.log(err);
   });
 }
-</code></pre><p>##同时触发</p>
-<p>  let [foo, bar] = await Promise.all([getFoo(), getBar()]);</p>
+</code></pre><h2 id="同时触发"><a href="#同时触发" class="headerlink" title="同时触发"></a>同时触发</h2><p>  let [foo, bar] = await Promise.all([getFoo(), getBar()]);</p>
 <p>  // 写法二<br>  let fooPromise = getFoo();<br>  let barPromise = getBar();<br>  let foo = await fooPromise;<br>  let bar = await barPromise;</p>
 </li>
 </ul>
@@ -134,7 +132,7 @@ async function myFunction() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://Shelly-Shen.github.io/2018/10/16/async-1/" data-id="cjnb6vqne00010shodlwoejhd" class="article-share-link">Share</a>
+      <a data-url="http://Shelly-Shen.github.io/2018/10/16/async-1/" data-id="cjnb73ud00000b0homqt27mif" class="article-share-link">Share</a>
       
       
     </footer>
@@ -143,10 +141,19 @@ async function myFunction() {
     
 <nav id="article-nav">
   
+    <a href="/2018/10/16/vuex/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          vuex
+        
+      </div>
+    </a>
   
-    <a href="/2018/10/16/test-my-site/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2018/10/16/闭包/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">test_my_site</div>
+      <div class="article-nav-title">闭包</div>
     </a>
   
 </nav>
@@ -183,11 +190,15 @@ async function myFunction() {
       <ul>
         
           <li>
+            <a href="/2018/10/16/vuex/">vuex</a>
+          </li>
+        
+          <li>
             <a href="/2018/10/16/async-1/">async</a>
           </li>
         
           <li>
-            <a href="/2018/10/16/test-my-site/">test_my_site</a>
+            <a href="/2018/10/16/闭包/">闭包</a>
           </li>
         
           <li>
