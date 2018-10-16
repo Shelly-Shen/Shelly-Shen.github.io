@@ -87,8 +87,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>###创建</p>
-<pre><code>npm install --global vue-cli
+        <h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><pre><code>npm install --global vue-cli
 切换到项目目录
 cd vuetest
 
@@ -161,7 +160,7 @@ export default{
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://Shelly-Shen.github.io/2018/10/16/vue-cil/" data-id="cjnb8gfz90002m4holkvs1ci9" class="article-share-link">Share</a>
+      <a data-url="http://Shelly-Shen.github.io/2018/10/16/vue-cil/" data-id="cjnbdkuj600036ohoybgh234s" class="article-share-link">Share</a>
       
       
     </footer>
@@ -543,7 +542,7 @@ store.registerModule([&apos;nested&apos;,&apos;myMoudel&apos;]),{
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://Shelly-Shen.github.io/2018/10/16/vuex/" data-id="cjnb8gfz70001m4houc6k9o7z" class="article-share-link">Share</a>
+      <a data-url="http://Shelly-Shen.github.io/2018/10/16/vuex/" data-id="cjnbdkui100016oho6ybmca3k" class="article-share-link">Share</a>
       
       
     </footer>
@@ -621,277 +620,7 @@ async function myFunction() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://Shelly-Shen.github.io/2018/10/16/async-1/" data-id="cjnb8gfz10000m4ho9v2gocuj" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-数据存储" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/10/16/数据存储/" class="article-date">
-  <time datetime="2018-10-16T03:10:42.000Z" itemprop="datePublished">2018-10-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/16/数据存储/">浏览器存储技术</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h2><h4 id="1-客户端发送请求后服务器端发送带有set-cookie的相应，之后客户端再次发送请求时会发送cookie"><a href="#1-客户端发送请求后服务器端发送带有set-cookie的相应，之后客户端再次发送请求时会发送cookie" class="headerlink" title="1.客户端发送请求后服务器端发送带有set-cookie的相应，之后客户端再次发送请求时会发送cookie"></a>1.客户端发送请求后服务器端发送带有set-cookie的相应，之后客户端再次发送请求时会发送cookie</h4><h4 id="2-document-cookie-name-value-expires-过期时间-path-页面路径-domain-域-secure-SSL链接时才能使用cookie的安全标志"><a href="#2-document-cookie-name-value-expires-过期时间-path-页面路径-domain-域-secure-SSL链接时才能使用cookie的安全标志" class="headerlink" title="2.document.cookie=name=value;expires=过期时间;path:页面路径;domain=域;secure(SSL链接时才能使用cookie的安全标志)"></a>2.document.cookie=name=value;expires=过期时间;path:页面路径;domain=域;secure(SSL链接时才能使用cookie的安全标志)</h4><h4 id="3-子cookie"><a href="#3-子cookie" class="headerlink" title="3.子cookie"></a>3.子cookie</h4><pre><code>document.cookie=data=name=Jake&amp;book=Professor;  
-</code></pre><h4 id="4-有4k的存储空间-每条cookie有长度限制"><a href="#4-有4k的存储空间-每条cookie有长度限制" class="headerlink" title="4.有4k的存储空间,每条cookie有长度限制"></a>4.有4k的存储空间,每条cookie有长度限制</h4><h4 id="5-Js处理cookie"><a href="#5-Js处理cookie" class="headerlink" title="5.Js处理cookie"></a>5.Js处理cookie</h4><pre><code>下列为拥有子cookie的处理方法
-
-var SubCookieUtil = {
-get:function(name,subname){
-    var subCookies = this.getAll(name);
-    if(subCookies){
-        return subCookies[subname];
-    }else{
-        return null;
-    }
-},
-getAll:function(name){
-    var cookieName = encodeURIComponent(name)+&quot;=&quot;;
-    var cookieStart = document.cookie.indexOf(cookieName);
-    var cookieEnd,
-    subCookies,
-    cookieValue = null,
-    i,parts,result = {};
-    if(cookieStart&gt;-1){
-        cookieEnd = document.cookie.indexOf(&quot;;&quot;,cookieStart);
-        if(cookieEnd == -1){
-            cookieEnd = document.cookie.length;
-        }
-
-        cookieValue = document.cookie.substring(cookieStart+cookieName.length,cookieEnd);
-        if(cookieValue.length &gt; 0){
-            subCookies = cookieValue.split(&quot;&amp;&quot;);
-            for(i = 0;i&lt;subCookies.length;i++){
-                parts = subCookies[i].split(&quot;=&quot;);
-                result[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1]);
-            }
-            return result;
-        }
-    }
-    return null;
-},
-set:function(name,subName,value,expires,path,domin,secure){
-    var subCookies = this.getAll
-    (name)||{};
-    subCookies[subName] = value;
-    this.setAll(name,subCookies,expires,path,domin,secure);
-},
-setAll:function(name,subCookies,expires,path,domin,secure){
-    var cookieText = encodeURIComponent(name)+&quot;=&quot;,
-    subCookiesParts = new Array(),
-    subName;
-    for(subName in subCookies){
-        if(subName.length&gt;0&amp;&amp;subCookies.hasOwnProperty(subName)){
-            subCookiesParts.push(encodeURIComponent(subName)+&quot;=&quot;+encodeURIComponent(subCookies[subName]));
-        }
-    }
-    if(subCookiesParts.length &gt; 0){
-        cookieText +=subCookiesParts.join(&quot;&amp;&quot;);
-        if(expires instanceof Date){
-            cookieText += &quot;;expires=&quot;+expires.toGMTString();
-        }
-        if(path){
-            cookieText += &quot;;path=&quot;+path;
-        }
-        if(domin){
-            cookieText+=&quot;;domain=&quot;+domin;
-        }
-        if(secure){
-            cookieText+=&quot;;secure&quot;;
-        }
-    }else{
-            cookieText += &quot;;expires&quot;+(new Date(0)).toGMTString();
-        }
-        document.cookie = cookieText;
-},
-unset:function(name,subname,path,domain,secure){
-    var subcookies = this.getAll(name);
-    if(subcookies){
-        delete subCookies[subname];
-        this.setAll(name,subCookies,null,path,somain,secure);
-    }
-},
-unsetAll:function(name,path,domain,secure){
-    this.setAll(name,null,new Date(0),path,domain,secure);
-}
-};
-SubCookieUtil.set(&quot;data&quot;,&quot;name&quot;,&quot;Nicole&quot;);
-var getData = SubCookieUtil.getAll(&quot;data&quot;);
-alert(SubCookieUtil.get(&quot;data&quot;,&quot;name&quot;));
-</code></pre><h2 id="userData"><a href="#userData" class="headerlink" title="userData"></a>userData</h2><h4 id="iE处理用户数据的方式"><a href="#iE处理用户数据的方式" class="headerlink" title="iE处理用户数据的方式"></a>iE处理用户数据的方式</h4><pre><code>&lt;div style=&quot;behavior:url(#default#userData)&quot; id=&quot;dataStore&quot;&gt;&lt;/div&gt;
-//js
-var dataStore = document.getElementById(dataStore);
-dataStore.setAttribute(&quot;name&quot;,&quot;Jake&quot;);
-dataStore.setAttribute(&quot;book&quot;,&quot;professor&quot;);
-//保存数据
-dataStore.save(&quot;BookInfo&quot;)；
-//设置数据空间
-dataStore.load(&quot;BookInfo&quot;); 
-//获取数据空间  
-dataStore.getAttribute(&quot;name&quot;); 
-//获取数据  
-dataStore.removeAttribute(&quot;book&quot;);  
-dataStore.save(&quot;BookInfo&quot;);
-//删除后需再次提交更改  
-</code></pre><h2 id="storage"><a href="#storage" class="headerlink" title="storage"></a>storage</h2><h4 id="storage类型"><a href="#storage类型" class="headerlink" title="storage类型"></a>storage类型</h4><p>1.被控制在客户端上，不会将数据返回给服务器<br>2.内存为5M或2.5M，可以大量存储数据</p>
-<h5 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h5><p>clear()删除全部<br>setItem(name,value)<br>getItem(name)<br>removeItem(name)<br>key(Index)获得在Index索引处的属性  </p>
-<h5 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h5><p>length</p>
-<h5 id="storage事件"><a href="#storage事件" class="headerlink" title="storage事件"></a>storage事件</h5><p>domain发生变化的存储空间的域<br>key发生变化的key<br>oldValue<br>newValue</p>
-<h4 id="sessionStorage"><a href="#sessionStorage" class="headerlink" title="sessionStorage"></a>sessionStorage</h4><p>会话存储，当浏览器关闭则自动清除不再保存</p>
-<pre><code>sessionStorage.setItem(&quot;name&quot;,&quot;Nicoke&quot;);
-sessionStorage.book = &quot;Professor&quot; //使用属性存储数据  var name = sessionStorage.getItem(&quot;name&quot;); 
-var book = sessionStorage.book;
-delete sessionStorage.name;  //在webkit中无效  
-sessionStorage.remove(&quot;book&quot;);      
-EventUtil.addHandler(document,&quot;storage&quot;,function(event){
-    alert(event.domain);
-});
-</code></pre><h4 id="golbalStorage"><a href="#golbalStorage" class="headerlink" title="golbalStorage"></a>golbalStorage</h4><p>如果没有delete或remove或用户手动清除缓存，globalStorage将长期保存，一直保留在磁盘上</p>
-<pre><code>golbalStorage[&quot;www.text.com&quot;].name = &quot;Nicole&quot;;
-//[&quot;www.text.com&quot;]针对域名www.text.com的存储空间  
-globalStorage[&quot;www.text.com&quot;].removeItem(&quot;name&quot;);
-globalStorage[local.host].setItem();
-//若不确定域名则使用local.host
-</code></pre><h4 id="localStorage"><a href="#localStorage" class="headerlink" title="localStorage"></a>localStorage</h4><p> 取代globalStorage对象，不同的是localStorage不用实现定义域名，直接globalStorage[local.host] </p>
-<pre><code>localStorage.setItem(&quot;name&quot;,&quot;Nickle&quot;);    
-</code></pre><h2 id="IndexedDB"><a href="#IndexedDB" class="headerlink" title="IndexedDB"></a>IndexedDB</h2><p>可以理解为用对象保存数据的数据库（MySql是表结构）  </p>
-<h4 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h4><pre><code>var indexedDB = window.indexedDB||window.msIndexedDB||window.mozIndexedDB||window.webkitIndexedDB; 
-//兼容性
-var request,database;
-var request = indexedDB.open(&quot;admin&quot;);
-//admin为数据库名，如果不存在则会自动创建 ，返回请求对象，对象上可以添加两个事件error和success
-request.onerror = function(event){
-    alert(event.target.errorCode);
-};
-request.onsuccess = function(event){
-    database = event.target.result;
-    //返回数据内容
-    if(database.version != &quot;1.0&quot; )
-        request = database.setVersion(&quot;1.0&quot;);
-        //设置版本号,返回请求对象
-        request.onblock = function(){
-            alert(&quot;请关闭其他页面再次尝试&quot;);
-        }
-        //并发问题：在想要更新数据库版本但另一个页面已打开数据库时
-        request.onerror = function(event){
-            alert(event.target.errorCode);
-        };
-        request.onsuccess = function(event){
-            alert(database.name+database.version);
-        }
-    }else{
-        alert(&quot;已经配置好版本号了&quot;)
-    }
-}
-</code></pre><h4 id="并发问题"><a href="#并发问题" class="headerlink" title="并发问题"></a>并发问题</h4><p>浏览器开了两个页面打开同一链接，当一个页面试图更新另一个还没有加载完的数据库时，调用setVersion()</p>
-<pre><code>database.onversionChange = function(){
-    database.close();
-};
-</code></pre><h4 id="对象存储空间"><a href="#对象存储空间" class="headerlink" title="对象存储空间"></a>对象存储空间</h4><pre><code>var user = {
-    username:&quot;007&quot;,
-    firstName : &quot;Jone&quot;,
-    lastName:&quot;Bond&quot;,
-    password:&quot;foo&quot;
-};
-var store = database.createObjectStore(&quot;users&quot;,{keyPath:&quot;userName&quot;});
-//设置名为user的存储空间（在SQL即设名user的表）并设置主键username
-//向存储空间添加数据
-var i= 0 ,
-requests = [];
-len = user.length;
-for(i&lt;len){
-    request =  store.add[user[i++]];
-    //add()添加新增数据和put方法添加更新数据，同样拥有两个事件处理程序  
-    request.onerror = function(event){...}
-    request.onsuccess = function(event){...}
-    requests.push(request);
-}
-</code></pre><h4 id="创建事物-会返回事务级事件处理程序onerror和oncomplete"><a href="#创建事物-会返回事务级事件处理程序onerror和oncomplete" class="headerlink" title="创建事物(会返回事务级事件处理程序onerror和oncomplete)"></a>创建事物(会返回事务级事件处理程序onerror和oncomplete)</h4><pre><code>var transaction = database.transaction(&quot;users&quot;,IDBTransaction.READ_WRITE);
-/*第一个参数为存储空间名,可指定多个存储空间，放在数组中，加载存储空间中的数据，通过事务访问  
-第二个参数为访问模式：READ_ONLY  READ_WRITE VERSION_CHANGE
-事件方法(会返回    新请求对象)：
-objectStore()只加载特定的存储空间 
-get()delete()接收对象键
-add() put() clear()*/
-var request = transaction.objectStore(&quot;users&quot;).get(&quot;007&quot;);
-request.onerror ....  
-transaction.oncomplete = function(event){...}
-</code></pre><h4 id="游标查询"><a href="#游标查询" class="headerlink" title="游标查询"></a>游标查询</h4><pre><code>var store = transaction.objectStore(&quot;users&quot;);
-var IDBKeyRange = window.IDBKeyRange||window.webkitKeyRange;
-//键范围实例
-var IDBCursor = window.IDBCursor||window.webkitIDBCursor;
-//游标方向:
-var nextNoDuplicate = IDBKeyRange.NEXT_NO_DUPLICATE;
-//游标方向为从第一项到最后一项并跳过重复
-//NEXT PREV PREV_NO_DUPLICATE
-var range = IDBKeyRange.Bound(&quot;007&quot;,&quot;ace&quot;,true,false);
-//此实例的方法：only(&quot;007&quot;)||upperBound()上界，游标从头开始到参数位置||lowerBound()下界，游标从参数位置到最后一个对象||Bound()
-//布尔值值是否包含参数,false则跳过
-request = store.openCursor(range,nextNoDuplicate);
-//接收两个参数，IDBKeyRange的实例和IDBCursor的实例
-//事务创建好后创建游标
-request.onerror..
-request.onsuccess = function(event){
-    var cursor = event.target.result,
-    value,updateRequest;
-    /*此实例有几个属性：
-        direction:IDBCursor.NEXT(0)(默认值下一个) ||IDBCursor.NEXT_NO_DUPLICATE(1)(下一个不重复的项）||IDBCursor.PREV_NO_DUPLICATE(2)（前一项）||IDBCursor.PREV_NO_DUPLICATE(前一个不重复的项)
-        1.key  2.value  3.primaryKey:游标使用的键
-    此实例有几个方法
-        update()delete()continue()advance()
-    */
-    if(cursor){
-        if(cursor.key == &quot;foo&quot;){
-            value = cursor.value;
-            value.password = &quot;magic&quot;;
-            var updateRequest = cursor.update(value);//update也会创建一个新请求
-            //delete同上一条，没有参数，删除当前项
-        }
-        console.log(cursor.key+&quot;:&quot;+JSON.stringify(event.value));
-        cursor.continue();
-    }
-}
-</code></pre><h4 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h4><pre><code>var index = store.createIndex(&quot;username&quot;,&quot;username&quot;,{unique:false});
-//第一个参数：索引名 第二个参数：索引属性名 第三个参数：键是否唯一    
-//store.Index(&quot;username&quot;)方法取得索引
-var indexName = store.indexNames
-//对象存储空间的对象indexName属性可访问到空间中的所有索引
-var i = 0,len = indexNames.length;
-while(i&lt;len){
-    index = store.index(indexName[i++]);
-    console.log(index.name+&quot;=&quot;+index.ketPath+index.unique);    
-}
-/*index方法：
-    get()从索引中取对象 参数索引键 
-    getKey()根据给定索引键取得主键
-    deleteIndex(&quot;username&quot;) 
-    openCursor() openKeyCursor()能在索引中打开游标并可以创建特殊的能返回每个记录主键的游标
-属性：name索引名 keyPath创建索引的属性路径 onjectStore索引对象存储空间unique索引键是否唯一的布尔值*/
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://Shelly-Shen.github.io/2018/10/16/数据存储/" data-id="cjnb8gfzb0003m4hoqxpn0vvs" class="article-share-link">Share</a>
+      <a data-url="http://Shelly-Shen.github.io/2018/10/16/async-1/" data-id="cjnbdkui400026ohobqygb4u9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1068,35 +797,7 @@ report(&quot;http://.....&quot;)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://Shelly-Shen.github.io/2018/10/16/闭包/" data-id="cjnb8gg0m0005m4hocmfelify" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-绘图" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/08/30/绘图/" class="article-date">
-  <time datetime="2018-08-30T02:30:43.551Z" itemprop="datePublished">2018-08-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Canvas和SVG的区别"><a href="#Canvas和SVG的区别" class="headerlink" title="Canvas和SVG的区别"></a>Canvas和SVG的区别</h2><h1 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a>canvas</h1><p>1.Canvas基于位图（像素）的：<br>放大后会出现像素格但颜色选择比较多，可以渲染比较真实感的图<br>2.canvas不可用事件处理器<br>3.一旦被绘制完成不会继续得到浏览器的关注<br>4.修改以后（如位置改变）会影响到整个场景，需要重新渲染<br>5.适合动态渲染，大数据量绘制如游戏场景渲染<br>6.能以JPG/PNG的形式存储<br>7.依赖于HTML，通过脚本绘制</p>
-<h1 id="SVG"><a href="#SVG" class="headerlink" title="SVG"></a>SVG</h1><p>1.基于矢量：不依赖分辨率<br>2.依赖于DOM,绘制的图形被视为对象,适用于交互,因此可以用JS控制元素，使用事件处理器<br>3.对象属性一旦发生变化，浏览器能自动重现图形<br>4.复杂度高，会减慢渲染速度<br>5.适用于大型渲染区域的程序如地图开发，静态高保真图形等</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://Shelly-Shen.github.io/2018/08/30/绘图/" data-id="cjnb8gfzc0004m4hoq9z9k8pq" class="article-share-link">Share</a>
+      <a data-url="http://Shelly-Shen.github.io/2018/10/16/闭包/" data-id="cjnbdkuhu00006ohoje1pp15i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1124,7 +825,7 @@ report(&quot;http://.....&quot;)
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li></ul>
     </div>
   </div>
 
@@ -1146,10 +847,6 @@ report(&quot;http://.....&quot;)
         
           <li>
             <a href="/2018/10/16/async-1/">async</a>
-          </li>
-        
-          <li>
-            <a href="/2018/10/16/数据存储/">浏览器存储技术</a>
           </li>
         
           <li>
