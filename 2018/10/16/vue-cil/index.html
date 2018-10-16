@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>vue-cil | Shelly-Shen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="###创建 npm install --global vue-cli 切换到项目目录 cd vuetest  安装一来模块 npm install 运行 npm run dev 打包 npm run build main.js入口文件 import Vue from &amp;apos;vue&amp;apos; import todoList from &amp;apos;./todoList.vue&amp;apos; ne">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue-cil">
+<meta property="og:url" content="http://Shelly-Shen.github.io/2018/10/16/vue-cil/index.html">
+<meta property="og:site_name" content="Shelly-Shen">
+<meta property="og:description" content="###创建 npm install --global vue-cli 切换到项目目录 cd vuetest  安装一来模块 npm install 运行 npm run dev 打包 npm run build main.js入口文件 import Vue from &amp;apos;vue&amp;apos; import todoList from &amp;apos;./todoList.vue&amp;apos; ne">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-16T04:29:07.155Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue-cil">
+<meta name="twitter:description" content="###创建 npm install --global vue-cli 切换到项目目录 cd vuetest  安装一来模块 npm install 运行 npm run dev 打包 npm run build main.js入口文件 import Vue from &amp;apos;vue&amp;apos; import todoList from &amp;apos;./todoList.vue&amp;apos; ne">
+  
+    <link rel="alternate" href="/atom.xml" title="Shelly-Shen" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Shelly-Shen</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://Shelly-Shen.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-vue-cil" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/16/vue-cil/" class="article-date">
+  <time datetime="2018-10-16T04:26:13.000Z" itemprop="datePublished">2018-10-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vue-cil
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###创建</p>
+<pre><code>npm install --global vue-cli
+切换到项目目录
+cd vuetest
+
+安装一来模块
+npm install
+运行
+npm run dev
+打包
+npm run build
+</code></pre><p>main.js入口文件</p>
+<pre><code>import Vue from &apos;vue&apos;
+import todoList from &apos;./todoList.vue&apos;
+</code></pre><p>new Vue({<br>    el：‘#app’,<br>    component:{todoList}<br>    template:’<todolist>‘<br>})</todolist></p>
+<p>app.vue改为todoList 组件</p>
+<pre><code>&lt;template&gt;
+&lt;div&gt;
+    &lt;div&gt;
+        &lt;input class=&quot;item&quot; v-model:&quot;inputValue&quot;&gt;
+        &lt;button @click = &quot;handleSubmit&quot;&gt;提交&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;ul&gt;
+    &lt;todoItem v-for=&quot;{item,index } of list&quot; :key=&quot;index&quot; :content=&quot;item&quot; :index=&quot;index&quot; @delete = “myhandeldelete” &gt;&lt;/todoItem&gt;      //经过下面的组件声明方可使用 ，定义content目的父组件传值给子组件,监听delete事件触发此文件定义的myhandelDelete事件
+    &lt;/ul&gt;
+&lt;/div&gt;
+&lt;/template&gt;//template中只能有一个子元素
+&lt;script&gt;
+import todoItem from &apos;./component/todoItem&apos;  //其为局部组件
+export default{
+    components:{
+        &apos;todoItem&apos;:todoItem     //局部组件进行声明
+    }
+    data:function(){         //data从对象变成函数,其返回值对应的数据
+        return {
+        inputValue:&apos;&apos;,
+        list:[]
+        }
+    },
+    methods:{
+        handelSubmit(){
+            this.list.push(this.inputValue)  //this指向实例，vue底层将this.$data.list处理缩写成this.list
+            this.inputvalue=&quot;&quot;
+        },
+        myhandelDelete(index){
+            this.List.splice(index,1)
+        }
+    }    
+}
+&lt;/script&gt;
+&lt;style&gt;&lt;/style&gt;
+</code></pre><p>hellworld.vue==&gt;todoItem.vue</p>
+<pre><code>&lt;template&gt;
+    &lt;li class=&quot;item&quot; @click=&quot;handleDelete&quot;&gt;{{content}}&lt;/li&gt;
+&lt;/template&gt;
+&lt;script&gt;
+    export default{
+        props:[&apos;content&apos;,&apos;index&apos;], //声明对content的使用即接收名为content的数据
+        methods:{
+            handleDelete(){
+                this.$emit(&apos;delete&apos;,this.index)//子组件向父组件通信,使用$emit向外触发事件delete,将this.index待会给父组件
+            }
+        }
+    }
+&lt;/script&gt;
+&lt;style scoped&gt;    // scoped指组件作用域（局部样式）,组件外部的样式使用里面的内容没有作用
+    .item{
+        color
+    }    
+&lt;/style&gt;
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://Shelly-Shen.github.io/2018/10/16/vue-cil/" data-id="cjnb8ajjg0001owhoxl6qtd7r" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/10/16/vuex/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">vuex</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/10/16/vue-cil/">vue-cil</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/16/vuex/">vuex</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/16/async-1/">async</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/16/闭包/">闭包</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
