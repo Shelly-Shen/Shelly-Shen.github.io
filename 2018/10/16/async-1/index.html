@@ -5,19 +5,19 @@
   
 
   
-  <title>test_my_site | Shelly-Shen</title>
+  <title>async | Shelly-Shen</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="shelly&apos;s blog ———— share everything">
+  <meta name="description" content="#async const asyncReadFile = async function () {   const f1 = await readFile(&amp;apos;/etc/fstab&amp;apos;);   const f2 = await readFile(&amp;apos;/etc/shells&amp;apos;);   console.log(f1.toString());   console.log(">
 <meta property="og:type" content="article">
-<meta property="og:title" content="test_my_site">
-<meta property="og:url" content="http://Shelly-Shen.github.io/2018/10/16/test-my-site/index.html">
+<meta property="og:title" content="async">
+<meta property="og:url" content="http://Shelly-Shen.github.io/2018/10/16/async-1/index.html">
 <meta property="og:site_name" content="Shelly-Shen">
-<meta property="og:description" content="shelly&apos;s blog ———— share everything">
+<meta property="og:description" content="#async const asyncReadFile = async function () {   const f1 = await readFile(&amp;apos;/etc/fstab&amp;apos;);   const f2 = await readFile(&amp;apos;/etc/shells&amp;apos;);   console.log(f1.toString());   console.log(">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-16T03:10:42.031Z">
+<meta property="og:updated_time" content="2018-10-16T03:49:15.833Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="test_my_site">
-<meta name="twitter:description" content="shelly&apos;s blog ———— share everything">
+<meta name="twitter:title" content="async">
+<meta name="twitter:description" content="#async const asyncReadFile = async function () {   const f1 = await readFile(&amp;apos;/etc/fstab&amp;apos;);   const f2 = await readFile(&amp;apos;/etc/shells&amp;apos;);   console.log(f1.toString());   console.log(">
   
     <link rel="alternate" href="/atom.xml" title="Shelly-Shen" type="application/atom+xml">
   
@@ -64,10 +64,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-test-my-site" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-async-1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/10/16/test-my-site/" class="article-date">
-  <time datetime="2018-10-16T03:10:42.000Z" itemprop="datePublished">2018-10-16</time>
+    <a href="/2018/10/16/async-1/" class="article-date">
+  <time datetime="2018-10-16T03:46:00.000Z" itemprop="datePublished">2018-10-16</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      test_my_site
+      async
     </h1>
   
 
@@ -86,11 +86,55 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>#async</p>
+<pre><code>const asyncReadFile = async function () {
+  const f1 = await readFile(&apos;/etc/fstab&apos;);
+  const f2 = await readFile(&apos;/etc/shells&apos;);
+  console.log(f1.toString());
+  console.log(f2.toString());
+};
+</code></pre><ul>
+<li>async表示函数里有异步操作，asyn，await后的函数会返回一个Promise 对象，,await命令就是内部then命令的语法糖  </li>
+<li>await会先返回，等到异步操作完成，再接着执行函数体内后面的语句。</li>
+<li><p>async函数内部return语句返回的值，会成为then方法回调函数的参数。</p>
+<pre><code>async function getStockPriceByName(name) {
+  const symbol = await getStockSymbol(name);
+  const stockPrice = await getStockPrice(symbol);
+  return stockPrice;
+}
+
+getStockPriceByName(&apos;goog&apos;).then(function (result) {
+  console.log(result);
+});
+</code></pre></li>
+<li><p>只有async函数内部的异步操作执行完，才会执行then方法指定的回调函数。<br>##try catch</p>
+<pre><code>async function f() {
+  try {
+    await new Promise(function (resolve, reject) {
+      throw new Error(&apos;出错了&apos;);
+    });
+  } catch(e) {
+  }
+  return await(&apos;hello world&apos;);
+}
+
+//另一种写法
+async function myFunction() {
+  await somethingThatReturnsAPromise()
+  .catch(function (err) {
+    console.log(err);
+  });
+}
+</code></pre><p>##同时触发</p>
+<p>  let [foo, bar] = await Promise.all([getFoo(), getBar()]);</p>
+<p>  // 写法二<br>  let fooPromise = getFoo();<br>  let barPromise = getBar();<br>  let foo = await fooPromise;<br>  let bar = await barPromise;</p>
+</li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://Shelly-Shen.github.io/2018/10/16/test-my-site/" data-id="cjnb6vqoq00020shocwki9lhl" class="article-share-link">Share</a>
+      <a data-url="http://Shelly-Shen.github.io/2018/10/16/async-1/" data-id="cjnb6vqne00010shodlwoejhd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -99,19 +143,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/10/16/async-1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          async
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/10/16/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/10/16/test-my-site/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
+      <div class="article-nav-title">test_my_site</div>
     </a>
   
 </nav>

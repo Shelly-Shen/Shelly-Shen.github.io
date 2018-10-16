@@ -65,6 +65,86 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-async-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/16/async-1/" class="article-date">
+  <time datetime="2018-10-16T03:46:00.000Z" itemprop="datePublished">2018-10-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/16/async-1/">async</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#async</p>
+<pre><code>const asyncReadFile = async function () {
+  const f1 = await readFile(&apos;/etc/fstab&apos;);
+  const f2 = await readFile(&apos;/etc/shells&apos;);
+  console.log(f1.toString());
+  console.log(f2.toString());
+};
+</code></pre><ul>
+<li>async表示函数里有异步操作，asyn，await后的函数会返回一个Promise 对象，,await命令就是内部then命令的语法糖  </li>
+<li>await会先返回，等到异步操作完成，再接着执行函数体内后面的语句。</li>
+<li><p>async函数内部return语句返回的值，会成为then方法回调函数的参数。</p>
+<pre><code>async function getStockPriceByName(name) {
+  const symbol = await getStockSymbol(name);
+  const stockPrice = await getStockPrice(symbol);
+  return stockPrice;
+}
+
+getStockPriceByName(&apos;goog&apos;).then(function (result) {
+  console.log(result);
+});
+</code></pre></li>
+<li><p>只有async函数内部的异步操作执行完，才会执行then方法指定的回调函数。<br>##try catch</p>
+<pre><code>async function f() {
+  try {
+    await new Promise(function (resolve, reject) {
+      throw new Error(&apos;出错了&apos;);
+    });
+  } catch(e) {
+  }
+  return await(&apos;hello world&apos;);
+}
+
+//另一种写法
+async function myFunction() {
+  await somethingThatReturnsAPromise()
+  .catch(function (err) {
+    console.log(err);
+  });
+}
+</code></pre><p>##同时触发</p>
+<p>  let [foo, bar] = await Promise.all([getFoo(), getBar()]);</p>
+<p>  // 写法二<br>  let fooPromise = getFoo();<br>  let barPromise = getBar();<br>  let foo = await fooPromise;<br>  let bar = await barPromise;</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://Shelly-Shen.github.io/2018/10/16/async-1/" data-id="cjnb6vqne00010shodlwoejhd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-test-my-site" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/10/16/test-my-site/" class="article-date">
@@ -91,7 +171,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://Shelly-Shen.github.io/2018/10/16/test-my-site/" data-id="cjnb6jwzs0001u0hoa041j0kl" class="article-share-link">Share</a>
+      <a data-url="http://Shelly-Shen.github.io/2018/10/16/test-my-site/" data-id="cjnb6vqoq00020shocwki9lhl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -136,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://Shelly-Shen.github.io/2018/10/16/hello-world/" data-id="cjnb6jwzb0000u0hoe3i3zmyg" class="article-share-link">Share</a>
+      <a data-url="http://Shelly-Shen.github.io/2018/10/16/hello-world/" data-id="cjnb6vqn800000shoyrht28b4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -175,6 +255,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/10/16/async-1/">async</a>
+          </li>
         
           <li>
             <a href="/2018/10/16/test-my-site/">test_my_site</a>
