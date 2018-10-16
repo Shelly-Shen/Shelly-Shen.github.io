@@ -65,6 +65,151 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-scope" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/16/scope/" class="article-date">
+  <time datetime="2018-10-16T08:56:27.000Z" itemprop="datePublished">2018-10-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/16/scope/">scope</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>域：空间，范围，区域….  (除函数，if for 都不是作用域)<br>作用：读，写<br>浏览器：  “JS解析器”<br>域：   1）Script:全局变量，全局函数<br>自上而下<br>2）函数 ：由里到外</p>
+<h3 id="1-“找一些东西”：var-function-参数"><a href="#1-“找一些东西”：var-function-参数" class="headerlink" title="1.“找一些东西”：var function 参数"></a>1.“找一些东西”：var function 参数</h3><pre><code>a=未定义   所有的变量在正式运行代码之前都提前赋了个值：未定义
+fn1=function(){alert(1);}
+</code></pre><p>所有的函数，在正式运行代码之前，都是整个函数块<br>JS的预解析      遇到重名的：只留一个<br>变量和函数重名只留函数  （全局域2.）</p>
+<h3 id="2-逐行解析代码"><a href="#2-逐行解析代码" class="headerlink" title="2.逐行解析代码:"></a>2.逐行解析代码:</h3><h4 id="1-表达式-–-参数…-能够改变值得东西-，动作"><a href="#1-表达式-–-参数…-能够改变值得东西-，动作" class="headerlink" title="1)表达式: = + - * / % ++ – ! 参数….(能够改变值得东西 ，动作)"></a>1)表达式: = + - * / % ++ – ! 参数….(能够改变值得东西 ，动作)</h4><p>表达式可以修改预解析的值</p>
+<h4 id="2-函数调用-：-1-预解析：var-function-参数-2-逐行解析"><a href="#2-函数调用-：-1-预解析：var-function-参数-2-逐行解析" class="headerlink" title="2)函数调用 ： [1]预解析：var function 参数  [2]逐行解析"></a>2)函数调用 ： [1]预解析：var function 参数  [2]逐行解析</h4><pre><code>全局域 
+1.
+alert(a);//未定义
+var a = 1;
+function fn1(){alert(2);}（函数声明）
+
+
+2.
+alert(a);//function a(){alert(4);}
+var a=1;
+alert(a);//1
+function a(){alert(2);}
+alert(a);//1
+var a=3;
+alert(a);//3
+function a(){alert(4);
+alert(a);//3
+
+局部域(局部域改变得值和全局中的无关)
+1.var a=1;
+ function fn1(){
+ alert(a);//undefined 
+ var a=2;
+ }
+ fn1();
+ alert(a);//1  
+
+2.var a=1;
+ function fn1(){
+ alert(a);  // 1 （预解析是找不到 a=...  没有变量 没有参数便向全局域中寻找） 
+ a=2;   //在局部域中找不到预解析中的a 所以向全局域中寻找 从而改变全局域中的值
+ }
+ fn1();
+ alert(a);//2  
+
+3.参数  
+ var a=1;
+ function fn1(a){  //预解析成 a = ... 
+ alert(a);//undefined
+ var a=2;  //a=2
+ }
+ fn1();
+ alert(a);//1
+4.var a=1;
+ function fn1(a){    //由于fn1(a) 预解析成 a = 1 
+ alert(a);//1
+ var a=2;  
+ }
+ fn1(a);
+ alert(a);//1  （此时局部a和全局a并无关系）  
+</code></pre><h3 id="小tip："><a href="#小tip：" class="headerlink" title="小tip："></a>小tip：</h3><p>想要哎获取函数内的值</p>
+<h4 id="1-通过全局变量"><a href="#1-通过全局变量" class="headerlink" title="1.通过全局变量"></a>1.通过全局变量</h4><pre><code>var str = &apos;&apos;;
+function fn1(){
+var a=&apos;123&apos;;
+str = a;
+}    
+fn1();
+alert(str); 
+</code></pre><h4 id="2-通过局部函数调用"><a href="#2-通过局部函数调用" class="headerlink" title="2.通过局部函数调用"></a>2.通过局部函数调用</h4><pre><code>function fn2(){
+var a=&apos;123&apos;;
+fn3(a);
+}
+fn2();
+function fn3(a){
+alert(a);
+}
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://Shelly-Shen.github.io/2018/10/16/scope/" data-id="cjnbhxifm0004zghojtn9bkwt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-draw" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/16/draw/" class="article-date">
+  <time datetime="2018-10-16T08:55:44.000Z" itemprop="datePublished">2018-10-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/16/draw/">Canvas和SVG的区别</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a>canvas</h1><p>1.Canvas基于位图（像素）的：<br>放大后会出现像素格但颜色选择比较多，可以渲染比较真实感的图<br>2.canvas不可用事件处理器<br>3.一旦被绘制完成不会继续得到浏览器的关注<br>4.修改以后（如位置改变）会影响到整个场景，需要重新渲染<br>5.适合动态渲染，大数据量绘制如游戏场景渲染<br>6.能以JPG/PNG的形式存储<br>7.依赖于HTML，通过脚本绘制</p>
+<h1 id="SVG"><a href="#SVG" class="headerlink" title="SVG"></a>SVG</h1><p>1.基于矢量：不依赖分辨率<br>2.依赖于DOM,绘制的图形被视为对象,适用于交互,因此可以用JS控制元素，使用事件处理器<br>3.对象属性一旦发生变化，浏览器能自动重现图形<br>4.复杂度高，会减慢渲染速度<br>5.适用于大型渲染区域的程序如地图开发，静态高保真图形等</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://Shelly-Shen.github.io/2018/10/16/draw/" data-id="cjnbhxifl0003zgho3367babo" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-datastore" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/10/16/datastore/" class="article-date">
@@ -325,7 +470,7 @@ while(i&lt;len){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://Shelly-Shen.github.io/2018/10/16/datastore/" data-id="cjnbhp8kz0002a0hohngzmu5l" class="article-share-link">Share</a>
+      <a data-url="http://Shelly-Shen.github.io/2018/10/16/datastore/" data-id="cjnbhxifj0002zgho9og5mhg9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -560,7 +705,7 @@ outline：inherit
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://Shelly-Shen.github.io/2018/10/16/css3/" data-id="cjnbhp8kq0000a0hoxx9a9u0u" class="article-share-link">Share</a>
+      <a data-url="http://Shelly-Shen.github.io/2018/10/16/css3/" data-id="cjnbhxifa0001zghomc3v5w4u" class="article-share-link">Share</a>
       
       
     </footer>
@@ -665,7 +810,7 @@ export default{
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://Shelly-Shen.github.io/2018/10/16/vue-cil/" data-id="cjnbhp8l00003a0hog4piafl1" class="article-share-link">Share</a>
+      <a data-url="http://Shelly-Shen.github.io/2018/10/16/vue-cil/" data-id="cjnbhxifp0006zghobpf8opjq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1047,7 +1192,7 @@ store.registerModule([&apos;nested&apos;,&apos;myMoudel&apos;]),{
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://Shelly-Shen.github.io/2018/10/16/vuex/" data-id="cjnbhp8l20004a0hoiqx2uf1v" class="article-share-link">Share</a>
+      <a data-url="http://Shelly-Shen.github.io/2018/10/16/vuex/" data-id="cjnbhxifq0007zghob95y77yn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1125,7 +1270,68 @@ async function myFunction() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://Shelly-Shen.github.io/2018/10/16/async-1/" data-id="cjnbhp8kw0001a0hotmzw537p" class="article-share-link">Share</a>
+      <a data-url="http://Shelly-Shen.github.io/2018/10/16/async-1/" data-id="cjnbhxif30000zgho2n1fbewg" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-this" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/16/this/" class="article-date">
+  <time datetime="2018-10-16T03:10:42.000Z" itemprop="datePublished">2018-10-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/16/this/">关于this指向</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>this指的是调用当前方法（函数）的那个对象 </p>
+<h2 id="一-无参数函数this的指向"><a href="#一-无参数函数this的指向" class="headerlink" title="一.无参数函数this的指向"></a>一.无参数函数this的指向</h2><p><code>function fn1(){  alert(this)  }</code>  </p>
+<pre><code>fn1()   ===》window   
+oBtn.onclick = fn1;   ===&gt; oBtn    
+oBtn.onclick = function(){ this };   ===&gt; oBtn    
+oBtn.onclick = function(){ fn() };   ===&gt; window
+ oBtn.onclick = function(){ fn(this) };   ===&gt; oBtn
+`&lt;button  onclick = &quot;alert(this  fn(1))&quot;&gt;&lt;/button&gt;`      this===&gt;button    fn1()里的this===&gt;window   
+</code></pre><h2 id="二-、带参数函数this的指向"><a href="#二-、带参数函数this的指向" class="headerlink" title="二.、带参数函数this的指向"></a>二.、带参数函数this的指向</h2><h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><pre><code>fn1(this)  
+function fn1(obj){  obj  }  obj===window    
+</code></pre><h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3><pre><code>oDiv.onclick = function{
+fn1(this) 
+}  
+function fn1(obj){
+obj
+}    obj ===》oDiv   
+</code></pre><h2 id="三-当this指向window时用that存储"><a href="#三-当this指向window时用that存储" class="headerlink" title="三.当this指向window时用that存储"></a>三.当this指向window时用that存储</h2><pre><code>var that = null;
+oBtn.onclick = function(){
+that = this;
+fn1();
+}
+fn1(){
+that.style.background = &apos;yellow&apos;; 
+}    
+===》this指向oBtn
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://Shelly-Shen.github.io/2018/10/16/this/" data-id="cjnbhxifo0005zgho1f29bruu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1302,7 +1508,7 @@ report(&quot;http://.....&quot;)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://Shelly-Shen.github.io/2018/10/16/闭包/" data-id="cjnbhp8l30005a0hohve4u1ur" class="article-share-link">Share</a>
+      <a data-url="http://Shelly-Shen.github.io/2018/10/16/闭包/" data-id="cjnbhxifs0008zghob7duggv3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1343,6 +1549,14 @@ report(&quot;http://.....&quot;)
       <ul>
         
           <li>
+            <a href="/2018/10/16/scope/">scope</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/16/draw/">Canvas和SVG的区别</a>
+          </li>
+        
+          <li>
             <a href="/2018/10/16/datastore/">浏览器存储技术</a>
           </li>
         
@@ -1352,14 +1566,6 @@ report(&quot;http://.....&quot;)
         
           <li>
             <a href="/2018/10/16/vue-cil/">vue-cil</a>
-          </li>
-        
-          <li>
-            <a href="/2018/10/16/vuex/">vuex</a>
-          </li>
-        
-          <li>
-            <a href="/2018/10/16/async-1/">async</a>
           </li>
         
       </ul>
