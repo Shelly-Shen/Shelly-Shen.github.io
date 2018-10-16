@@ -1,0 +1,798 @@
+<!DOCTYPE HTML>
+<html lang="">
+<head>
+    
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="浏览器存储技术, Shelly-Shen">
+    <meta name="description" content="cookie1.客户端发送请求后服务器端发送带有set-cookie的相应，之后客户端再次发送请求时会发送cookie2.document.cookie=name=value;expires=过期时间;path:页面路径;domain=域;">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>浏览器存储技术 | Shelly-Shen</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+</head>
+
+</head>
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.png" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">Shelly-Shen</span>
+                    </a>
+                </div>
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>About</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Shelly-Shen</div>
+        <div class="logo-desc">
+            
+            shelly&#39;s blog ———— share something
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                About
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+
+    <div class="social-link"><a href="https://github.com/Shelly-Shen" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<a href="mailto:shenyue@bilibili.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 1280127787" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+        <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+</header>
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        浏览器存储技术
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="post-info">
+                
+
+                <span class="post-date">
+                    <i class="fa fa-clock-o fa-fw"></i>2018-10-16
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h2><h4 id="1-客户端发送请求后服务器端发送带有set-cookie的相应，之后客户端再次发送请求时会发送cookie"><a href="#1-客户端发送请求后服务器端发送带有set-cookie的相应，之后客户端再次发送请求时会发送cookie" class="headerlink" title="1.客户端发送请求后服务器端发送带有set-cookie的相应，之后客户端再次发送请求时会发送cookie"></a>1.客户端发送请求后服务器端发送带有set-cookie的相应，之后客户端再次发送请求时会发送cookie</h4><h4 id="2-document-cookie-name-value-expires-过期时间-path-页面路径-domain-域-secure-SSL链接时才能使用cookie的安全标志"><a href="#2-document-cookie-name-value-expires-过期时间-path-页面路径-domain-域-secure-SSL链接时才能使用cookie的安全标志" class="headerlink" title="2.document.cookie=name=value;expires=过期时间;path:页面路径;domain=域;secure(SSL链接时才能使用cookie的安全标志)"></a>2.document.cookie=name=value;expires=过期时间;path:页面路径;domain=域;secure(SSL链接时才能使用cookie的安全标志)</h4><h4 id="3-子cookie"><a href="#3-子cookie" class="headerlink" title="3.子cookie"></a>3.子cookie</h4><pre><code>document.cookie=data=name=Jake&amp;book=Professor;  
+</code></pre><h4 id="4-有4k的存储空间-每条cookie有长度限制"><a href="#4-有4k的存储空间-每条cookie有长度限制" class="headerlink" title="4.有4k的存储空间,每条cookie有长度限制"></a>4.有4k的存储空间,每条cookie有长度限制</h4><h4 id="5-Js处理cookie"><a href="#5-Js处理cookie" class="headerlink" title="5.Js处理cookie"></a>5.Js处理cookie</h4><pre><code>下列为拥有子cookie的处理方法
+
+var SubCookieUtil = {
+get:function(name,subname){
+    var subCookies = this.getAll(name);
+    if(subCookies){
+        return subCookies[subname];
+    }else{
+        return null;
+    }
+},
+getAll:function(name){
+    var cookieName = encodeURIComponent(name)+&quot;=&quot;;
+    var cookieStart = document.cookie.indexOf(cookieName);
+    var cookieEnd,
+    subCookies,
+    cookieValue = null,
+    i,parts,result = {};
+    if(cookieStart&gt;-1){
+        cookieEnd = document.cookie.indexOf(&quot;;&quot;,cookieStart);
+        if(cookieEnd == -1){
+            cookieEnd = document.cookie.length;
+        }
+
+        cookieValue = document.cookie.substring(cookieStart+cookieName.length,cookieEnd);
+        if(cookieValue.length &gt; 0){
+            subCookies = cookieValue.split(&quot;&amp;&quot;);
+            for(i = 0;i&lt;subCookies.length;i++){
+                parts = subCookies[i].split(&quot;=&quot;);
+                result[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1]);
+            }
+            return result;
+        }
+    }
+    return null;
+},
+set:function(name,subName,value,expires,path,domin,secure){
+    var subCookies = this.getAll
+    (name)||{};
+    subCookies[subName] = value;
+    this.setAll(name,subCookies,expires,path,domin,secure);
+},
+setAll:function(name,subCookies,expires,path,domin,secure){
+    var cookieText = encodeURIComponent(name)+&quot;=&quot;,
+    subCookiesParts = new Array(),
+    subName;
+    for(subName in subCookies){
+        if(subName.length&gt;0&amp;&amp;subCookies.hasOwnProperty(subName)){
+            subCookiesParts.push(encodeURIComponent(subName)+&quot;=&quot;+encodeURIComponent(subCookies[subName]));
+        }
+    }
+    if(subCookiesParts.length &gt; 0){
+        cookieText +=subCookiesParts.join(&quot;&amp;&quot;);
+        if(expires instanceof Date){
+            cookieText += &quot;;expires=&quot;+expires.toGMTString();
+        }
+        if(path){
+            cookieText += &quot;;path=&quot;+path;
+        }
+        if(domin){
+            cookieText+=&quot;;domain=&quot;+domin;
+        }
+        if(secure){
+            cookieText+=&quot;;secure&quot;;
+        }
+    }else{
+            cookieText += &quot;;expires&quot;+(new Date(0)).toGMTString();
+        }
+        document.cookie = cookieText;
+},
+unset:function(name,subname,path,domain,secure){
+    var subcookies = this.getAll(name);
+    if(subcookies){
+        delete subCookies[subname];
+        this.setAll(name,subCookies,null,path,somain,secure);
+    }
+},
+unsetAll:function(name,path,domain,secure){
+    this.setAll(name,null,new Date(0),path,domain,secure);
+}
+};
+SubCookieUtil.set(&quot;data&quot;,&quot;name&quot;,&quot;Nicole&quot;);
+var getData = SubCookieUtil.getAll(&quot;data&quot;);
+alert(SubCookieUtil.get(&quot;data&quot;,&quot;name&quot;));
+</code></pre><h2 id="userData"><a href="#userData" class="headerlink" title="userData"></a>userData</h2><h4 id="iE处理用户数据的方式"><a href="#iE处理用户数据的方式" class="headerlink" title="iE处理用户数据的方式"></a>iE处理用户数据的方式</h4><pre><code>&lt;div style=&quot;behavior:url(#default#userData)&quot; id=&quot;dataStore&quot;&gt;&lt;/div&gt;
+//js
+var dataStore = document.getElementById(dataStore);
+dataStore.setAttribute(&quot;name&quot;,&quot;Jake&quot;);
+dataStore.setAttribute(&quot;book&quot;,&quot;professor&quot;);
+//保存数据
+dataStore.save(&quot;BookInfo&quot;)；
+//设置数据空间
+dataStore.load(&quot;BookInfo&quot;); 
+//获取数据空间  
+dataStore.getAttribute(&quot;name&quot;); 
+//获取数据  
+dataStore.removeAttribute(&quot;book&quot;);  
+dataStore.save(&quot;BookInfo&quot;);
+//删除后需再次提交更改  
+</code></pre><h2 id="storage"><a href="#storage" class="headerlink" title="storage"></a>storage</h2><h4 id="storage类型"><a href="#storage类型" class="headerlink" title="storage类型"></a>storage类型</h4><p>1.被控制在客户端上，不会将数据返回给服务器<br>2.内存为5M或2.5M，可以大量存储数据</p>
+<h5 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h5><p>clear()删除全部<br>setItem(name,value)<br>getItem(name)<br>removeItem(name)<br>key(Index)获得在Index索引处的属性  </p>
+<h5 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h5><p>length</p>
+<h5 id="storage事件"><a href="#storage事件" class="headerlink" title="storage事件"></a>storage事件</h5><p>domain发生变化的存储空间的域<br>key发生变化的key<br>oldValue<br>newValue</p>
+<h4 id="sessionStorage"><a href="#sessionStorage" class="headerlink" title="sessionStorage"></a>sessionStorage</h4><p>会话存储，当浏览器关闭则自动清除不再保存</p>
+<pre><code>sessionStorage.setItem(&quot;name&quot;,&quot;Nicoke&quot;);
+sessionStorage.book = &quot;Professor&quot; //使用属性存储数据  var name = sessionStorage.getItem(&quot;name&quot;); 
+var book = sessionStorage.book;
+delete sessionStorage.name;  //在webkit中无效  
+sessionStorage.remove(&quot;book&quot;);      
+EventUtil.addHandler(document,&quot;storage&quot;,function(event){
+    alert(event.domain);
+});
+</code></pre><h4 id="golbalStorage"><a href="#golbalStorage" class="headerlink" title="golbalStorage"></a>golbalStorage</h4><p>如果没有delete或remove或用户手动清除缓存，globalStorage将长期保存，一直保留在磁盘上</p>
+<pre><code>golbalStorage[&quot;www.text.com&quot;].name = &quot;Nicole&quot;;
+//[&quot;www.text.com&quot;]针对域名www.text.com的存储空间  
+globalStorage[&quot;www.text.com&quot;].removeItem(&quot;name&quot;);
+globalStorage[local.host].setItem();
+//若不确定域名则使用local.host
+</code></pre><h4 id="localStorage"><a href="#localStorage" class="headerlink" title="localStorage"></a>localStorage</h4><p> 取代globalStorage对象，不同的是localStorage不用实现定义域名，直接globalStorage[local.host] </p>
+<pre><code>localStorage.setItem(&quot;name&quot;,&quot;Nickle&quot;);    
+</code></pre><h2 id="IndexedDB"><a href="#IndexedDB" class="headerlink" title="IndexedDB"></a>IndexedDB</h2><p>可以理解为用对象保存数据的数据库（MySql是表结构）  </p>
+<h4 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h4><pre><code>var indexedDB = window.indexedDB||window.msIndexedDB||window.mozIndexedDB||window.webkitIndexedDB; 
+//兼容性
+var request,database;
+var request = indexedDB.open(&quot;admin&quot;);
+//admin为数据库名，如果不存在则会自动创建 ，返回请求对象，对象上可以添加两个事件error和success
+request.onerror = function(event){
+    alert(event.target.errorCode);
+};
+request.onsuccess = function(event){
+    database = event.target.result;
+    //返回数据内容
+    if(database.version != &quot;1.0&quot; )
+        request = database.setVersion(&quot;1.0&quot;);
+        //设置版本号,返回请求对象
+        request.onblock = function(){
+            alert(&quot;请关闭其他页面再次尝试&quot;);
+        }
+        //并发问题：在想要更新数据库版本但另一个页面已打开数据库时
+        request.onerror = function(event){
+            alert(event.target.errorCode);
+        };
+        request.onsuccess = function(event){
+            alert(database.name+database.version);
+        }
+    }else{
+        alert(&quot;已经配置好版本号了&quot;)
+    }
+}
+</code></pre><h4 id="并发问题"><a href="#并发问题" class="headerlink" title="并发问题"></a>并发问题</h4><p>浏览器开了两个页面打开同一链接，当一个页面试图更新另一个还没有加载完的数据库时，调用setVersion()</p>
+<pre><code>database.onversionChange = function(){
+    database.close();
+};
+</code></pre><h4 id="对象存储空间"><a href="#对象存储空间" class="headerlink" title="对象存储空间"></a>对象存储空间</h4><pre><code>var user = {
+    username:&quot;007&quot;,
+    firstName : &quot;Jone&quot;,
+    lastName:&quot;Bond&quot;,
+    password:&quot;foo&quot;
+};
+var store = database.createObjectStore(&quot;users&quot;,{keyPath:&quot;userName&quot;});
+//设置名为user的存储空间（在SQL即设名user的表）并设置主键username
+//向存储空间添加数据
+var i= 0 ,
+requests = [];
+len = user.length;
+for(i&lt;len){
+    request =  store.add[user[i++]];
+    //add()添加新增数据和put方法添加更新数据，同样拥有两个事件处理程序  
+    request.onerror = function(event){...}
+    request.onsuccess = function(event){...}
+    requests.push(request);
+}
+</code></pre><h4 id="创建事物-会返回事务级事件处理程序onerror和oncomplete"><a href="#创建事物-会返回事务级事件处理程序onerror和oncomplete" class="headerlink" title="创建事物(会返回事务级事件处理程序onerror和oncomplete)"></a>创建事物(会返回事务级事件处理程序onerror和oncomplete)</h4><pre><code>var transaction = database.transaction(&quot;users&quot;,IDBTransaction.READ_WRITE);
+/*第一个参数为存储空间名,可指定多个存储空间，放在数组中，加载存储空间中的数据，通过事务访问  
+第二个参数为访问模式：READ_ONLY  READ_WRITE VERSION_CHANGE
+事件方法(会返回    新请求对象)：
+objectStore()只加载特定的存储空间 
+get()delete()接收对象键
+add() put() clear()*/
+var request = transaction.objectStore(&quot;users&quot;).get(&quot;007&quot;);
+request.onerror ....  
+transaction.oncomplete = function(event){...}
+</code></pre><h4 id="游标查询"><a href="#游标查询" class="headerlink" title="游标查询"></a>游标查询</h4><pre><code>var store = transaction.objectStore(&quot;users&quot;);
+var IDBKeyRange = window.IDBKeyRange||window.webkitKeyRange;
+//键范围实例
+var IDBCursor = window.IDBCursor||window.webkitIDBCursor;
+//游标方向:
+var nextNoDuplicate = IDBKeyRange.NEXT_NO_DUPLICATE;
+//游标方向为从第一项到最后一项并跳过重复
+//NEXT PREV PREV_NO_DUPLICATE
+var range = IDBKeyRange.Bound(&quot;007&quot;,&quot;ace&quot;,true,false);
+//此实例的方法：only(&quot;007&quot;)||upperBound()上界，游标从头开始到参数位置||lowerBound()下界，游标从参数位置到最后一个对象||Bound()
+//布尔值值是否包含参数,false则跳过
+request = store.openCursor(range,nextNoDuplicate);
+//接收两个参数，IDBKeyRange的实例和IDBCursor的实例
+//事务创建好后创建游标
+request.onerror..
+request.onsuccess = function(event){
+    var cursor = event.target.result,
+    value,updateRequest;
+    /*此实例有几个属性：
+        direction:IDBCursor.NEXT(0)(默认值下一个) ||IDBCursor.NEXT_NO_DUPLICATE(1)(下一个不重复的项）||IDBCursor.PREV_NO_DUPLICATE(2)（前一项）||IDBCursor.PREV_NO_DUPLICATE(前一个不重复的项)
+        1.key  2.value  3.primaryKey:游标使用的键
+    此实例有几个方法
+        update()delete()continue()advance()
+    */
+    if(cursor){
+        if(cursor.key == &quot;foo&quot;){
+            value = cursor.value;
+            value.password = &quot;magic&quot;;
+            var updateRequest = cursor.update(value);//update也会创建一个新请求
+            //delete同上一条，没有参数，删除当前项
+        }
+        console.log(cursor.key+&quot;:&quot;+JSON.stringify(event.value));
+        cursor.continue();
+    }
+}
+</code></pre><h4 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h4><pre><code>var index = store.createIndex(&quot;username&quot;,&quot;username&quot;,{unique:false});
+//第一个参数：索引名 第二个参数：索引属性名 第三个参数：键是否唯一    
+//store.Index(&quot;username&quot;)方法取得索引
+var indexName = store.indexNames
+//对象存储空间的对象indexName属性可访问到空间中的所有索引
+var i = 0,len = indexNames.length;
+while(i&lt;len){
+    index = store.index(indexName[i++]);
+    console.log(index.name+&quot;=&quot;+index.ketPath+index.unique);    
+}
+/*index方法：
+    get()从索引中取对象 参数索引键 
+    getKey()根据给定索引键取得主键
+    deleteIndex(&quot;username&quot;) 
+    openCursor() openKeyCursor()能在索引中打开游标并可以创建特殊的能返回每个记录主键的游标
+属性：name索引名 keyPath创建索引的属性路径 onjectStore索引对象存储空间unique索引键是否唯一的布尔值*/
+</code></pre>
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff;
+        background-color: #22AB38;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff;
+        background-color: #019FE8;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs">
+                        <li class="tab wechat-tab waves-effect waves-light"><a class="active" href="#wechat">微信</a></li>
+                        <li class="tab alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                    </ul>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#reward .reward-link').on('click', function () {
+            $('#rewardModal').openModal();
+        });
+
+        $('#rewardModal .close').on('click', function () {
+            $('#rewardModal').closeModal();
+        });
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone, qq, weibo, douban"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">Reprint please specify: </span>
+                    <a href="http://Shelly-Shen.github.io" class="b-link-green">Shelly-Shen</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2018/10/16/datastore/" class="b-link-green">浏览器存储技术</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">Previous</div>
+            <div class="card">
+                <a href="/2018/10/16/draw/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Canvas和SVG的区别">
+                        
+                        <span class="card-title">Canvas和SVG的区别</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">canvas1.Canvas基于位图（像素）的：放大后会出现像素格但颜色选择比较多，可以渲染比较真实感的图2.canvas不可用事件处理器3.一旦被绘制完成不会继续得到浏览器的关注4.修改以后（如位置改变）会影响到整个场景，需要重新渲染5.</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-10-16
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            shelly
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">Next</div>
+            <div class="card">
+                <a href="/2018/10/16/css3/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="css3">
+                        
+                        <span class="card-title">css3</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">box-shadowbox-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+前两个数值时偏移量，后一个是模糊半径；第一个是外阴影，第二个是内嵌阴</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-10-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            shelly
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+    
+
+</main>
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 采用
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>的主题搭建.
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/Shelly-Shen" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<a href="mailto:shenyue@bilibili.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 1280127787" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input" autofocus="">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-double-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+</body>
+</html>
