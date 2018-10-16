@@ -5,19 +5,19 @@
   
 
   
-  <title>async | Shelly-Shen</title>
+  <title>Canvas和SVG的区别 | Shelly-Shen</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="asyncconst asyncReadFile = async function () {   const f1 = await readFile(&amp;apos;/etc/fstab&amp;apos;);   const f2 = await readFile(&amp;apos;/etc/shells&amp;apos;);   console.log(f1.toString());   console.log(f2">
+  <meta name="description" content="canvas1.Canvas基于位图（像素）的：放大后会出现像素格但颜色选择比较多，可以渲染比较真实感的图2.canvas不可用事件处理器3.一旦被绘制完成不会继续得到浏览器的关注4.修改以后（如位置改变）会影响到整个场景，需要重新渲染5.适合动态渲染，大数据量绘制如游戏场景渲染6.能以JPG/PNG的形式存储7.依赖于HTML，通过脚本绘制 SVG1.基于矢量：不依赖分辨率2.依赖于DOM,绘制">
 <meta property="og:type" content="article">
-<meta property="og:title" content="async">
-<meta property="og:url" content="http://Shelly-Shen.github.io/2018/10/16/async-1/index.html">
+<meta property="og:title" content="Canvas和SVG的区别">
+<meta property="og:url" content="http://Shelly-Shen.github.io/2018/10/16/绘图/index.html">
 <meta property="og:site_name" content="Shelly-Shen">
-<meta property="og:description" content="asyncconst asyncReadFile = async function () {   const f1 = await readFile(&amp;apos;/etc/fstab&amp;apos;);   const f2 = await readFile(&amp;apos;/etc/shells&amp;apos;);   console.log(f1.toString());   console.log(f2">
+<meta property="og:description" content="canvas1.Canvas基于位图（像素）的：放大后会出现像素格但颜色选择比较多，可以渲染比较真实感的图2.canvas不可用事件处理器3.一旦被绘制完成不会继续得到浏览器的关注4.修改以后（如位置改变）会影响到整个场景，需要重新渲染5.适合动态渲染，大数据量绘制如游戏场景渲染6.能以JPG/PNG的形式存储7.依赖于HTML，通过脚本绘制 SVG1.基于矢量：不依赖分辨率2.依赖于DOM,绘制">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-16T03:52:28.920Z">
+<meta property="og:updated_time" content="2018-10-16T04:21:09.568Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="async">
-<meta name="twitter:description" content="asyncconst asyncReadFile = async function () {   const f1 = await readFile(&amp;apos;/etc/fstab&amp;apos;);   const f2 = await readFile(&amp;apos;/etc/shells&amp;apos;);   console.log(f1.toString());   console.log(f2">
+<meta name="twitter:title" content="Canvas和SVG的区别">
+<meta name="twitter:description" content="canvas1.Canvas基于位图（像素）的：放大后会出现像素格但颜色选择比较多，可以渲染比较真实感的图2.canvas不可用事件处理器3.一旦被绘制完成不会继续得到浏览器的关注4.修改以后（如位置改变）会影响到整个场景，需要重新渲染5.适合动态渲染，大数据量绘制如游戏场景渲染6.能以JPG/PNG的形式存储7.依赖于HTML，通过脚本绘制 SVG1.基于矢量：不依赖分辨率2.依赖于DOM,绘制">
   
     <link rel="alternate" href="/atom.xml" title="Shelly-Shen" type="application/atom+xml">
   
@@ -64,10 +64,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-async-1" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-绘图" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/10/16/async-1/" class="article-date">
-  <time datetime="2018-10-16T03:46:00.000Z" itemprop="datePublished">2018-10-16</time>
+    <a href="/2018/10/16/绘图/" class="article-date">
+  <time datetime="2018-10-16T03:10:42.000Z" itemprop="datePublished">2018-10-16</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      async
+      Canvas和SVG的区别
     </h1>
   
 
@@ -86,53 +86,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="async"><a href="#async" class="headerlink" title="async"></a>async</h1><pre><code>const asyncReadFile = async function () {
-  const f1 = await readFile(&apos;/etc/fstab&apos;);
-  const f2 = await readFile(&apos;/etc/shells&apos;);
-  console.log(f1.toString());
-  console.log(f2.toString());
-};
-</code></pre><ul>
-<li>async表示函数里有异步操作，asyn，await后的函数会返回一个Promise 对象，,await命令就是内部then命令的语法糖  </li>
-<li>await会先返回，等到异步操作完成，再接着执行函数体内后面的语句。</li>
-<li><p>async函数内部return语句返回的值，会成为then方法回调函数的参数。</p>
-<pre><code>async function getStockPriceByName(name) {
-  const symbol = await getStockSymbol(name);
-  const stockPrice = await getStockPrice(symbol);
-  return stockPrice;
-}
-
-getStockPriceByName(&apos;goog&apos;).then(function (result) {
-  console.log(result);
-});
-</code></pre></li>
-<li><p>只有async函数内部的异步操作执行完，才会执行then方法指定的回调函数。</p>
-<h2 id="try-catch"><a href="#try-catch" class="headerlink" title="try catch"></a>try catch</h2><pre><code>async function f() {
-  try {
-    await new Promise(function (resolve, reject) {
-      throw new Error(&apos;出错了&apos;);
-    });
-  } catch(e) {
-  }
-  return await(&apos;hello world&apos;);
-}
-
-//另一种写法
-async function myFunction() {
-  await somethingThatReturnsAPromise()
-  .catch(function (err) {
-    console.log(err);
-  });
-}
-</code></pre><h2 id="同时触发"><a href="#同时触发" class="headerlink" title="同时触发"></a>同时触发</h2><p>  let [foo, bar] = await Promise.all([getFoo(), getBar()]);</p>
-<p>  // 写法二<br>  let fooPromise = getFoo();<br>  let barPromise = getBar();<br>  let foo = await fooPromise;<br>  let bar = await barPromise;</p>
-</li>
-</ul>
+        <h3 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a>canvas</h3><p>1.Canvas基于位图（像素）的：<br>放大后会出现像素格但颜色选择比较多，可以渲染比较真实感的图<br>2.canvas不可用事件处理器<br>3.一旦被绘制完成不会继续得到浏览器的关注<br>4.修改以后（如位置改变）会影响到整个场景，需要重新渲染<br>5.适合动态渲染，大数据量绘制如游戏场景渲染<br>6.能以JPG/PNG的形式存储<br>7.依赖于HTML，通过脚本绘制</p>
+<h3 id="SVG"><a href="#SVG" class="headerlink" title="SVG"></a>SVG</h3><p>1.基于矢量：不依赖分辨率<br>2.依赖于DOM,绘制的图形被视为对象,适用于交互,因此可以用JS控制元素，使用事件处理器<br>3.对象属性一旦发生变化，浏览器能自动重现图形<br>4.复杂度高，会减慢渲染速度<br>5.适用于大型渲染区域的程序如地图开发，静态高保真图形等</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://Shelly-Shen.github.io/2018/10/16/async-1/" data-id="cjnb805pm000254ho45sz07ok" class="article-share-link">Share</a>
+      <a data-url="http://Shelly-Shen.github.io/2018/10/16/绘图/" data-id="cjnb805pq000554ho128ewyet" class="article-share-link">Share</a>
       
       
     </footer>
@@ -141,19 +101,19 @@ async function myFunction() {
     
 <nav id="article-nav">
   
-    <a href="/2018/10/16/vuex/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/10/16/闭包/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          vuex
+          闭包
         
       </div>
     </a>
   
   
-    <a href="/2018/10/16/vue.cil/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/10/16/数据存储/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">vue.cli</div>
+      <div class="article-nav-title">浏览器存储技术</div>
     </a>
   
 </nav>

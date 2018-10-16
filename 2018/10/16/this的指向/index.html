@@ -5,19 +5,19 @@
   
 
   
-  <title>async | Shelly-Shen</title>
+  <title>关于this指向 | Shelly-Shen</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="asyncconst asyncReadFile = async function () {   const f1 = await readFile(&amp;apos;/etc/fstab&amp;apos;);   const f2 = await readFile(&amp;apos;/etc/shells&amp;apos;);   console.log(f1.toString());   console.log(f2">
+  <meta name="description" content="this指的是调用当前方法（函数）的那个对象  一.无参数函数this的指向function fn1(){  alert(this)  }   fn1()   ===》window    oBtn.onclick = fn1;   ===&amp;gt; oBtn     oBtn.onclick = function(){ this };   ===&amp;gt; oBtn     oBtn.onclick">
 <meta property="og:type" content="article">
-<meta property="og:title" content="async">
-<meta property="og:url" content="http://Shelly-Shen.github.io/2018/10/16/async-1/index.html">
+<meta property="og:title" content="关于this指向">
+<meta property="og:url" content="http://Shelly-Shen.github.io/2018/10/16/this的指向/index.html">
 <meta property="og:site_name" content="Shelly-Shen">
-<meta property="og:description" content="asyncconst asyncReadFile = async function () {   const f1 = await readFile(&amp;apos;/etc/fstab&amp;apos;);   const f2 = await readFile(&amp;apos;/etc/shells&amp;apos;);   console.log(f1.toString());   console.log(f2">
+<meta property="og:description" content="this指的是调用当前方法（函数）的那个对象  一.无参数函数this的指向function fn1(){  alert(this)  }   fn1()   ===》window    oBtn.onclick = fn1;   ===&amp;gt; oBtn     oBtn.onclick = function(){ this };   ===&amp;gt; oBtn     oBtn.onclick">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-16T03:52:28.920Z">
+<meta property="og:updated_time" content="2018-10-16T04:18:38.905Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="async">
-<meta name="twitter:description" content="asyncconst asyncReadFile = async function () {   const f1 = await readFile(&amp;apos;/etc/fstab&amp;apos;);   const f2 = await readFile(&amp;apos;/etc/shells&amp;apos;);   console.log(f1.toString());   console.log(f2">
+<meta name="twitter:title" content="关于this指向">
+<meta name="twitter:description" content="this指的是调用当前方法（函数）的那个对象  一.无参数函数this的指向function fn1(){  alert(this)  }   fn1()   ===》window    oBtn.onclick = fn1;   ===&amp;gt; oBtn     oBtn.onclick = function(){ this };   ===&amp;gt; oBtn     oBtn.onclick">
   
     <link rel="alternate" href="/atom.xml" title="Shelly-Shen" type="application/atom+xml">
   
@@ -64,10 +64,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-async-1" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-this的指向" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/10/16/async-1/" class="article-date">
-  <time datetime="2018-10-16T03:46:00.000Z" itemprop="datePublished">2018-10-16</time>
+    <a href="/2018/10/16/this的指向/" class="article-date">
+  <time datetime="2018-10-16T03:10:42.000Z" itemprop="datePublished">2018-10-16</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      async
+      关于this指向
     </h1>
   
 
@@ -86,53 +86,36 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="async"><a href="#async" class="headerlink" title="async"></a>async</h1><pre><code>const asyncReadFile = async function () {
-  const f1 = await readFile(&apos;/etc/fstab&apos;);
-  const f2 = await readFile(&apos;/etc/shells&apos;);
-  console.log(f1.toString());
-  console.log(f2.toString());
-};
-</code></pre><ul>
-<li>async表示函数里有异步操作，asyn，await后的函数会返回一个Promise 对象，,await命令就是内部then命令的语法糖  </li>
-<li>await会先返回，等到异步操作完成，再接着执行函数体内后面的语句。</li>
-<li><p>async函数内部return语句返回的值，会成为then方法回调函数的参数。</p>
-<pre><code>async function getStockPriceByName(name) {
-  const symbol = await getStockSymbol(name);
-  const stockPrice = await getStockPrice(symbol);
-  return stockPrice;
+        <p>this指的是调用当前方法（函数）的那个对象 </p>
+<h2 id="一-无参数函数this的指向"><a href="#一-无参数函数this的指向" class="headerlink" title="一.无参数函数this的指向"></a>一.无参数函数this的指向</h2><p><code>function fn1(){  alert(this)  }</code>  </p>
+<pre><code>fn1()   ===》window   
+oBtn.onclick = fn1;   ===&gt; oBtn    
+oBtn.onclick = function(){ this };   ===&gt; oBtn    
+oBtn.onclick = function(){ fn() };   ===&gt; window
+ oBtn.onclick = function(){ fn(this) };   ===&gt; oBtn
+`&lt;button  onclick = &quot;alert(this  fn(1))&quot;&gt;&lt;/button&gt;`      this===&gt;button    fn1()里的this===&gt;window   
+</code></pre><h2 id="二-、带参数函数this的指向"><a href="#二-、带参数函数this的指向" class="headerlink" title="二.、带参数函数this的指向"></a>二.、带参数函数this的指向</h2><h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><pre><code>fn1(this)  
+function fn1(obj){  obj  }  obj===window    
+</code></pre><h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3><pre><code>oDiv.onclick = function{
+fn1(this) 
+}  
+function fn1(obj){
+obj
+}    obj ===》oDiv   
+</code></pre><h2 id="三-当this指向window时用that存储"><a href="#三-当this指向window时用that存储" class="headerlink" title="三.当this指向window时用that存储"></a>三.当this指向window时用that存储</h2><pre><code>var that = null;
+oBtn.onclick = function(){
+that = this;
+fn1();
 }
-
-getStockPriceByName(&apos;goog&apos;).then(function (result) {
-  console.log(result);
-});
-</code></pre></li>
-<li><p>只有async函数内部的异步操作执行完，才会执行then方法指定的回调函数。</p>
-<h2 id="try-catch"><a href="#try-catch" class="headerlink" title="try catch"></a>try catch</h2><pre><code>async function f() {
-  try {
-    await new Promise(function (resolve, reject) {
-      throw new Error(&apos;出错了&apos;);
-    });
-  } catch(e) {
-  }
-  return await(&apos;hello world&apos;);
-}
-
-//另一种写法
-async function myFunction() {
-  await somethingThatReturnsAPromise()
-  .catch(function (err) {
-    console.log(err);
-  });
-}
-</code></pre><h2 id="同时触发"><a href="#同时触发" class="headerlink" title="同时触发"></a>同时触发</h2><p>  let [foo, bar] = await Promise.all([getFoo(), getBar()]);</p>
-<p>  // 写法二<br>  let fooPromise = getFoo();<br>  let barPromise = getBar();<br>  let foo = await fooPromise;<br>  let bar = await barPromise;</p>
-</li>
-</ul>
-
+fn1(){
+that.style.background = &apos;yellow&apos;; 
+}    
+===》this指向oBtn
+</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://Shelly-Shen.github.io/2018/10/16/async-1/" data-id="cjnb805pm000254ho45sz07ok" class="article-share-link">Share</a>
+      <a data-url="http://Shelly-Shen.github.io/2018/10/16/this的指向/" data-id="cjnb805qz000754hoqualqr18" class="article-share-link">Share</a>
       
       
     </footer>
@@ -141,20 +124,15 @@ async function myFunction() {
     
 <nav id="article-nav">
   
-    <a href="/2018/10/16/vuex/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/10/16/数据存储/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          vuex
+          浏览器存储技术
         
       </div>
     </a>
   
-  
-    <a href="/2018/10/16/vue.cil/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">vue.cli</div>
-    </a>
   
 </nav>
 
